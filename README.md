@@ -4,11 +4,11 @@ Computer graphics and mechanics of an object in a 3D space.
 ---
 ## 🗂️ Table of Contents
 
-- [Project Description](#project-description)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Running the Project](#running-the-project)
-- [Screenshots](#screenshots)
+- [Project Description](#:books: Project Overview)
+- [Installation](#📝 Installation)
+- [Usage](#🎮 Usage)
+- [Running the Project](#🏃🏻‍♂️ Running the Project)
+- [Screenshots](#📷 Screenshots)
 ---
 
 ## :books: Project Overview
