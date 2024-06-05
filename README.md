@@ -58,10 +58,7 @@ Use any browser. I prefer Chrome
 
 ## 📷 Screenshots
 
-![x-axis]()
+![rotated cube](https://github.com/kieran-woodrow/computer-graphics-3D-transformations/blob/main/Assets/Screenshot%202024-06-05%20at%2006.22.53.png)
 
-![x-axis and wireframe]()
+![available functions](https://github.com/kieran-woodrow/computer-graphics-3D-transformations/blob/main/Assets/Screenshot%202024-06-05%20at%2006.23.01.png)
 
-![y-axis and wireframe]()
-
-![z-axis and wireframe]()
