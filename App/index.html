@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>COS344 Prac 3</title>
+</head>
+
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute  vec4 vPosition;
+attribute  vec4 vColor;
+varying vec4 fColor;
+
+uniform vec3 rotate;
+uniform vec3 scale;
+uniform vec3 translate;
+
+void main()
+{
+        // Compute the sines and cosines of theta for each of
+        //   the three axes in one computation.
+        vec3 angles = radians( rotate );
+        vec3 c = cos( angles );
+        vec3 s = sin( angles );
+
+        // Remeber: thse matrices are column-major
+        mat4 rx = mat4( 
+                1.0,  0.0,  0.0, 0.0,
+                0.0,  c.x,  s.x, 0.0,
+                0.0, -s.x,  c.x, 0.0,
+                0.0,  0.0,  0.0, 1.0 );
+
+        mat4 ry = mat4( 
+                c.y, 0.0, -s.y, 0.0,
+                0.0, 1.0,  0.0, 0.0,
+                s.y, 0.0,  c.y, 0.0,
+                0.0, 0.0,  0.0, 1.0 );
+
+        mat4 rz = mat4( 
+                c.z, s.z, 0.0, 0.0,
+                -s.z,  c.z, 0.0, 0.0,
+                0.0,  0.0, 1.0, 0.0,
+                0.0,  0.0, 0.0, 1.0 );
+
+         mat4 matrixForScale = mat4(
+                scale.x, 0.0, 0.0, 0.0,
+                0.0, scale.y, 0.0, 0.0,
+                0.0, 0.0, scale.z, 0.0,
+                0.0, 0.0, 0.0, 1.0
+        );  
+
+        mat4 matrixForTranslate = mat4(
+                1.0, 0.0, 0.0, 0.0,
+                0.0, 1.0, 0.0, 0.0,
+                0.0, 0.0, 1.0, 0.0,
+                translate.x, translate.y, translate.z, 1.0
+        );   
+
+        fColor = vColor;
+        gl_Position =  matrixForScale* matrixForTranslate * rz * ry * rx  * vPosition;
+        gl_Position.z = -gl_Position.z;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+                precision mediump float;
+                
+                varying vec4 fColor;
+                
+                void
+                main()
+                {
+                    gl_FragColor = fColor;
+                }
+</script>
+
+
+<body>
+        <h1 style="border: Solid; ">This project was created so that the user can view a visual
+                representation of what happens when certain
+                transformations are applied to a cube.</h1>
+        <canvas id="gl-canvas" width="800" height=" 800"></canvas>
+
+        <div id=functionDiv></div>
+        <div id="rotate" style="float:left; width: 17%">
+                <h1 style="color:red"><u>Rotate the cube</u></h1>
+                <p>Delta: <span id="rotateDelta">0.1</span></p>
+                <p>X: <span id="rotateX">0</span></p>
+                <p>Y: <span id="rotateY">0</span></p>
+                <p>Z: <span id="rotateZ">0</span></p>
+
+        </div>
+        <div id="translate" style="float:left; width: 20%">
+                <h1 style="color:green"><u>Translate the cube</u> </h1>
+                <p>Delta: <span id="translateDelta">0.1</span></p>
+                <p>X: <span id="translateX">0</span></p>
+                <p>Y: <span id="translateY">0</span></p>
+                <p>Z: <span id="translateZ">0</span></p>
+
+        </div>
+        <div id="scale">
+                <h1 style="color:blue"><u>Scale the cube</u></h1>
+                <p>Delta: <span id="scaleDelta">0.1</span></p>
+                <p>X: <span id="scaleX">1</span></p>
+                <p>Y: <span id="scaleY">1</span></p>
+                <p>Z: <span id="scaleZ">1</span></p>
+
+        </div>
+        </div>
+
+        <br><br>
+        <div id="informationDiv">
+                <h3>Below describes the way in which a user can interact with the program using their keyboard.
+                </h3>
+                <h1>Available functions to use with the keyboard.</h1>
+                <p>Take note of the following:</p>
+                <li>The keyboard inputs need not to be capatalized. Simply press the key value. </li>
+                <li>The canvas has a width of 800 pixels and a height of 800 pixels.</li>
+                <li>There are certain default values to begin with for each funtion. If the user makes use of
+                        the reset funtion, or if the program is restarted, the initial values will be reset to
+                        these default values.</li>
+                <li>The delta value will be the value that each co-ordinate is added or subtracted by. Each
+                        function has it's own delta value.</li>
+
+                <h2 style="color:red; border: Solid">How to use the Rotate function</h2>
+                <li>To <b>increase the X co-ordinate</b> for the rotate functionality, the user can use the
+                        <b>keyboard
+                                input Q.</b>
+                </li>
+                <li>To <b>decrease the X co-ordinate</b> for the rotate functionality, the user can use the
+                        <b>keyboard
+                                input W.</b>
+                </li>
+                <li>To <b>increase the Y co-ordinate</b> for the rotate functionality, the user can use the
+                        <b>keyboard
+                                input E.</b>
+                </li>
+                <li>To <b>decrease the Y co-ordinate</b> for the rotate functionality, the user can use the
+                        <b>keyboard
+                                input R.</b>
+                </li>
+                <li>To <b>increase the Z co-ordinate</b> for the rotate functionality, the user can use the
+                        <b>keyboard
+                                input T.</b>
+                </li>
+                <li>To <b>decrease the Z co-ordinate</b> for the rotate functionality, the user can use the
+                        <b>keyboard
+                                input Y.</b>
+                </li>
+                <li>To <b>increase the Delta value</b> for the rotate functionality, the user can use the
+                        <b>keyboard
+                                input U.</b>
+                </li>
+                <li>To <b>decrease the Delta value</b> for the rotate functionality, the user can use the
+                        <b>keyboard
+                                input I.</b>
+                </li>
+
+                <h2 style="color:green;  border: Solid">How to use the Translate function</h2>
+                <li>To <b>increase the X co-ordinate</b> for the translate functionality, the user can use the
+                        <b>keyboard
+                                input A.</b>
+                </li>
+                <li>To <b>decrease the X co-ordinate</b> for the translate functionality, the user can use the
+                        <b>keyboard
+                                input S.</b>
+                </li>
+                <li>To <b>increase the Y. co-ordinate</b> for the translate functionality, the user can use the
+                        <b>keyboard
+                                input D.</b>
+                </li>
+                <li>To <b>decrease the Y co-ordinate</b> for the translate functionality, the user can use the
+                        <b>keyboard
+                                input F.</b>
+                </li>
+                <li>To <b>increase the Z co-ordinate</b> for the translate functionality, the user can use the
+                        <b>keyboard
+                                input G.</b>
+                </li>
+                <li>To <b>decrease the Z co-ordinate</b> for the translate functionality, the user can use the
+                        <b>keyboard
+                                input H.</b>
+                </li>
+                <li>To <b>increase the Delta value</b> for the translate functionality, the user can use the
+                        <b>keyboard
+                                input J.</b>
+                </li>
+                <li>To <b>decrease the Delta value</b> for the translate functionality, the user can use the
+                        <b>keyboard
+                                input K.</b>
+                </li>
+
+                <h2 style="color:blue;  border: Solid">How to use the Translate function</h2>
+                <li>To <b>increase the X co-ordinate</b> for the scale functionality, the user can use the
+                        <b>keyboard
+                                input Z.</b>
+                </li>
+                <li>To <b>decrease the X co-ordinate</b> for the scale functionality, the user can use the
+                        <b>keyboard
+                                input X.</b>
+                </li>
+                <li>To <b>increase the Y co-ordinate</b> for the scale functionality, the user can use the
+                        <b>keyboard
+                                input C.</b>
+                </li>
+                <li>To <b>decrease the Y co-ordinate</b> for the scale functionality, the user can use the
+                        <b>keyboard
+                                input V.</b>
+                </li>
+                <li>To <b>increase the Z co-ordinate</b> for the scale functionality, the user can use the
+                        <b>keyboard
+                                input B.</b>
+                </li>
+                <li>To <b>decrease the Z co-ordinate</b> for the scale functionality, the user can use the
+                        <b>keyboard
+                                input N.</b>
+                </li>
+                <li>To <b>increase the Delta value</b> for the scale functionality, the user can use the
+                        <b>keyboard
+                                input M.</b>
+                </li>
+                <li>To <b>decrease the Delta value</b> for the scale functionality, the user can use the
+                        <b>keyboard
+                                input ,</b>
+                </li>
+
+                <h2 style="color:orange;  border: Solid">How to use the Reset function</h2>
+                <li>To <b>reset</b> all the values, the user can use the <b>keyboard input P.</b></li>
+        </div>
+
+
+</body>
+<script type="text/javascript" src="Common/webgl-utils.js"></script>
+<script type="text/javascript" src="Common/initShaders.js"></script>
+<script type="text/javascript" src="Common/MV.js"></script>
+<script type="text/javascript" src="app.js"></script>
+
+
+
+</html>
