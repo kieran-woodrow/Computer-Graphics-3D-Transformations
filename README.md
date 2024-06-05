@@ -8,7 +8,7 @@ Computer graphics and mechanics of an object in a 3D space.
 - [Technology Stack](#-technology-stack)
 - [Installation](#-installation)
 - [Usage](#-usage)
-- [Running the Project](#-running-the-project)
+- [Running the Project](#-running-The-project)
 - [Screenshots](#-screenshots)
 ---
 
