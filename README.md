@@ -4,21 +4,21 @@ Computer graphics and mechanics of an object in a 3D space.
 ---
 ## 🗂️ Table of Contents
 
-- [Project Overview](#books-project-overview)
-- [Technology Stack](#hammer_and_wrench-technology-stack)
+- [Project Overview](#-project-overview)
+- [Technology Stack](#-technology-stack)
 - [Installation](#-installation)
 - [Usage](#-usage)
 - [Running the Project](#-running-the-project)
 - [Screenshots](#-screenshots)
 ---
 
-## :books: Project Overview
+## 📚 Project Overview
 
 This project delved into computer graphics as well as implementing the mechanics of the maths and vector calculations to get a 3D prism to transform on it's x-axis, y-axis and z-axis.
 
 ---
 
-## :hammer_and_wrench: Technology Stack 
+## 🛠️ Technology Stack 
 
 ### Project code language used
 
