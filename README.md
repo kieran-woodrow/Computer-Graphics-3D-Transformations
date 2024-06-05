@@ -2,7 +2,7 @@
 Computer graphics and mechanics of an object in a 3D space.
 
 ---
-## 🗂️ Table of Contents
+## 🗂️ Table Of Contents
 
 - [Project Overview](#-project-overview)
 - [Technology Stack](#-technology-stack)
@@ -47,7 +47,7 @@ Use any browser. I prefer Chrome.
 
 ---
 
-## 🏃🏻‍♂️ Running the Project
+## 🏃🏻‍♂️ Running The Project
 
 1. Open `index.html`.
 
