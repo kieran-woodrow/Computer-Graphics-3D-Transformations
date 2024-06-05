@@ -8,7 +8,7 @@ Computer graphics and mechanics of an object in a 3D space.
 - [Installation](#📝 Installation)
 - [Usage](#🎮 Usage)
 - [Running the Project](#🏃🏻‍♂️ Running the Project)
-- [Screenshots](#📷 Screenshots)
+- [Screenshots](#Screenshots)
 ---
 
 ## :books: Project Overview
